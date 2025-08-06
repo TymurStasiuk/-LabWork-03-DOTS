@@ -1,0 +1,15 @@
+def main():
+    n, m = map(int, input().split())
+    indegree = [0] * n
+    outdegree = [0] * n
+
+    for _ in range(m):
+        u, v = map(int, input().split())
+        outdegree[u - 1] += 1
+        indegree[v - 1] += 1
+
+    for i in range(n):
+        print(indegree[i], outdegree[i])
+
+if __name__ == "__main__":
+    main()
