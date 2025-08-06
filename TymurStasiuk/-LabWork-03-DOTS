@@ -1,0 +1,26 @@
+def is_transitive(n, adj):
+    for v in range(n):
+        neighbors = [u for u in range(n) if adj[v][u]]
+        for i in range(len(neighbors)):
+            for j in range(i + 1, len(neighbors)):
+                u = neighbors[i]
+                w = neighbors[j]
+                if not adj[u][w]:
+                    return False
+    return True
+
+def main():
+    k = int(input())
+    for _ in range(k):
+        n, m = map(int, input().split())
+        adj = [[0]*n for _ in range(n)]
+        for _ in range(m):
+            u, v = map(int, input().split())
+            u -= 1
+            v -= 1
+            adj[u][v] = 1
+            adj[v][u] = 1  # неориентированный граф
+        print("YES" if is_transitive(n, adj) else "NO")
+
+if __name__ == "__main__":
+    main()
