@@ -1,0 +1,26 @@
+def count_connected_components(adj_matrix):
+    n = len(adj_matrix)
+    visited = [False] * n
+
+    def dfs(v):
+        visited[v] = True
+        for u in range(n):
+            if adj_matrix[v][u] == 1 and not visited[u]:
+                dfs(u)
+
+    components = 0
+    for i in range(n):
+        if not visited[i]:
+            dfs(i)
+            components += 1
+
+    return components
+
+if __name__ == "__main__":
+    n = int(input())
+    adj_matrix = []
+    for _ in range(n):
+        row = list(map(int, input().split()))
+        adj_matrix.append(row)
+
+    print(count_connected_components(adj_matrix))
